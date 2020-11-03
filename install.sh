@@ -3,11 +3,11 @@
 clear
 cd /home/pi
 sudo apt update
-sudo apt upgrade -y
+#sudo apt upgrade -y
 #Install subversion (SVN) for the normal functionality of github-downloader script
 sudo apt install -y subversion
 #Install autoconf.cfg for sound on Mupen64Plus
-wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA-ConfigsRemaps/master/cm3/configs/all/autoconf.cfg>/opt/retropie/configs/all/autoconf.cfg
+#wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA-ConfigsRemaps/master/cm3/configs/all/autoconf.cfg>/opt/retropie/configs/all/autoconf.cfg
 #Create scripts directory
 if [ -d /home/pi/scripts/ ]; then
         echo "Directory scripts was created yet"
@@ -18,13 +18,14 @@ else
         mkdir /home/pi/scripts/
 fi
 #Install multi_switch script
-wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA/master/multi_switch.sh>/home/pi/scripts/multi_switch.sh
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/multi_switch.sh>/home/pi/scripts/multi_switch.sh
 chmod +x /home/pi/scripts/multi_switch.sh
 
 #Install github-downloader script
-wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA/master/github-downloader.sh>/home/pi/scripts/github-downloader.sh
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/github-downloader.sh>/home/pi/scripts/github-downloader.sh
 chmod +x /home/pi/scripts/github-downloader.sh
 
+#Install Update-Addons directory
 if [ -d /home/pi/RetroPie/retropiemenu/Update-Addons ]; then
         echo "Directory update addons was created yet."
         echo "Updating Addons Menu..."
@@ -38,7 +39,7 @@ else
 fi
 
 #Install Addons Menu Updater
-wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA/master/cm3/UpdateMenu.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/UpdateMenu.sh
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/UpdateMenu.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/UpdateMenu.sh
 chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/UpdateMenu.sh
 if grep -q "UpdateMenu.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
         echo "UpdateMenu is in the gamelist.xml yet"
@@ -47,13 +48,13 @@ else
 fi
 
 #Install Temperature Indicator
-wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA-TempIndicatorAddon/master/InstallTempIndicator.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/InstallTempIndicator.sh
-chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/InstallTempIndicator.sh
-if grep -q "InstallTempIndicator.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
-        echo "InstallTempIndicator is in the gamelist.xml yet"
-else
-        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/InstallTempIndicator.sh</path>\n\t\t<name>Install Temp. Indicator script</name>\n\t\t<desc>Script to install temperature indicator. If the temperature exceeds 68 degrees, an icon will appear with the degrees the cpu is at.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
-fi
+#wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA-TempIndicatorAddon/master/InstallTempIndicator.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/InstallTempIndicator.sh
+#chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/InstallTempIndicator.sh
+#if grep -q "InstallTempIndicator.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+#        echo "InstallTempIndicator is in the gamelist.xml yet"
+#else
+#        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/InstallTempIndicator.sh</path>\n\t\t<name>Install Temp. Indicator script</name>\n\t\t<desc>Script to install temperature indicator. If the temperature exceeds 68 degrees, an icon will appear with the degrees the cpu is at.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+#fi
 #Install Update and Upgrade System
 wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA-UpdateUpgradeSystem/master/UpdateUpgradeSystem.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/UpdateUpgradeSystem.sh
 chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/UpdateUpgradeSystem.sh
@@ -72,7 +73,7 @@ else
 fi
 
 #Install Super Retroboy theme and launchings
-wget -O- https://raw.githubusercontent.com/julenvitoria/FreeplayGBA-SuperRetroBoyTheme/master/ThemePlusLaunchings.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/ThemePlusLaunchings.sh
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy-SuperRetroBoyTheme/main/ThemePlusLaunchings.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/ThemePlusLaunchings.sh
 chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/ThemePlusLaunchings.sh
 if grep -q "ThemePlusLaunchings.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
         echo "ThemePlusLaunchings is in the gamelist.xml yet"
