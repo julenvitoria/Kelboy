@@ -122,7 +122,7 @@ else
 fi
 
 #Install audio fix
-wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/sound.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/audiofix.sh
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/audiofix.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/audiofix.sh
 chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/audiofix.sh
 if grep -q "audiofix.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
         echo "Audio fix is in the gamelist.xml yet"
