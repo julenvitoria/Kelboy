@@ -81,7 +81,7 @@ else
 fi
 
 #Install Configs and Remaps
-wget -O- https://github.com/julenvitoria/Kelboy-ConfigsRemaps/ConfigsRemaps.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/ConfigRemaps.sh
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy-ConfigsRemaps/main/ConfigsRemaps.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/ConfigRemaps.sh
 chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/ConfigRemaps.sh
 if grep -q "ConfigRemaps.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
         echo "Configs and Remaps is in the gamelist.xml yet"
@@ -97,7 +97,7 @@ if [ -d /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes ]; then
         rm -R /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
         mkdir /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
 else
-        echo "Creatings directory update addons."
+        echo "Creating directory update addons."
         sleep 2
         mkdir /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
 fi
