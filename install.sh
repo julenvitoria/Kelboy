@@ -143,7 +143,6 @@ fi
 sed -i '/.\/launcher.sh/ d' /home/pi/.bashrc
 sed -i 's|cd kelboy-launcher|#cd kelboy-launcher \&\& ./launcher.sh|' /home/pi/.bashrc
 sed -i 's|# RETROPIE PROFILE START|cd ~\n# RETROPIE PROFILE START|' /home/pi/.bashrc
-# RETROPIE PROFILE START
 
 #Restart EmulationStation
 /home/pi/scripts/multi_switch.sh --ES-RESTART
