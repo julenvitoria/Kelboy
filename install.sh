@@ -139,5 +139,14 @@ else
         sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/audiofix.sh</path>\n\t\t<name>Fix Sound Settings</name>\n\t\t<desc>Script to fix sound settings after an update of retropie.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
+#Install autostart.sh fix
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/autostartfix.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/autostartfix.sh
+chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/autostartfix.sh
+if grep -q "autostartfix.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+        echo "Autostart fix is in the gamelist.xml yet"
+else
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/autostartfix.sh</path>\n\t\t<name>Fix autostart.sh</name>\n\t\t<desc>Script to modify the retropie autostart.sh script to have the option to select kelboy launcher at boot and have joystick.py also work with the ES and Kodi options. It could be neccessary to apply this fix after an update.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+fi
+
 #Restart EmulationStation
 /home/pi/scripts/multi_switch.sh --ES-RESTART

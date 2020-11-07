@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#Fix EmulationStation
+#Fix EmulationStation audio settings
 sed -i 's/.*<string name="AudioCard" value=.*/<string name="AudioCard" value="hw" \/>/' /opt/retropie/configs/all/emulationstation/es_settings.cfg
 sed -i 's/.*<string name="AudioDevice" value=.*/<string name="AudioDevice" value="PCM" \/>/' /opt/retropie/configs/all/emulationstation/es_settings.cfg
 sed -i 's/.*<string name="OMXAudioDev" value=.*/<string name="OMXAudioDev" value="alsa" \/>/' /opt/retropie/configs/all/emulationstation/es_settings.cfg
