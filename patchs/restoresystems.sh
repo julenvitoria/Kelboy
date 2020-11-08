@@ -4,7 +4,7 @@ echo "Esto esta en pruebas!!!"
 echo "Aun asi se puede usar... ;)"
 sleep 5
 
-#Create /roms/kelboy directory
+#Create /roms/kelboy directory and download files
 if [ -d /home/pi/RetroPie/roms/kelboy/ ]; then
         echo "Directory /roms/kelboy was created yet. Downloading kelboy system..."
         wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/kelboy/kelboy.sh>/home/pi/RetroPie/roms/kelboy/kelboy.sh
@@ -20,7 +20,11 @@ else
 fi
 
 #mod es_systems.cfg file
-sudo sed -i 's|</systemList>|<system>\n    <name>kelboy</name>\n    <fullname>kelboy</fullname>\n    <path>/home/pi/RetroPie/roms/kelboy</path>\n    <extension>.sh</extension>\n    <command>/home/pi/RetroPie/roms/kelboy/kelboy.sh</command>\n    <platform>kelboy</platform>\n    <theme>kelboy</theme>\n  </system>\n</systemList>|' /etc/emulationstation/es_systems.cfg
+
+if grep -q "<name>kelboy</name>" /etc/emulationstation/es_systems.cfg ; then
+        echo "kelboy system already exists, nothing to mod"
+else
+        sudo sed -i 's|</systemList>|<system>\n    <name>kelboy</name>\n    <fullname>kelboy</fullname>\n    <path>/home/pi/RetroPie/roms/kelboy</path>\n    <extension>.sh</extension>\n    <command>/home/pi/RetroPie/roms/kelboy/kelboy.sh</command>\n    <platform>kelboy</platform>\n    <theme>kelboy</theme>\n  </system>\n</systemList>|' /etc/emulationstation/es_systems.cfg
 
 echo "RestoreSystems fix applied!!!"
 sleep 3
