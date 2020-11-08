@@ -22,14 +22,5 @@ sed -i 's|</systemList>|<system>\n    <name>kelboy</name>\n    <fullname>kelboy<
 echo "RestoreSystems fix applied!!!"
 sleep 3
 
-<system>
-    <name>nes</name>
-    <fullname>Nintendo Entertainment System</fullname>
-    <path>/home/pi/RetroPie/roms/nes</path>
-    <extension>.nes .zip .NES .ZIP</extension>
-    <command>/opt/retropie/supplementary/runcommand/runcommand.sh 0 _SYS_ nes %ROM%</command>
-    <platform>nes</platform>
-    <theme>nes</theme>
-</system>
 
 
