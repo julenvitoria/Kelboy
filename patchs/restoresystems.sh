@@ -17,7 +17,7 @@ else
 fi
 
 #mod es_systems.cfg file
-sudo sed -i 's|</systemList>|<system>\n    <name>kelboy</name>\n    <fullname>kelboy</fullname>\n    <path>/home/pi/RetroPie/roms/kelboy</path>\n    <extension>.sh</extension>\n    <command>/home/pi/RetroPie/roms/kelboy/kelboy.sh</command>\n    <platform>kelboy</platform>\n    <theme>kelboy</theme>\n</systemList>|' /etc/emulationstation/es_systems.cfg
+sudo sed -i 's|</systemList>|<system>\n    <name>kelboy</name>\n    <fullname>kelboy</fullname>\n    <path>/home/pi/RetroPie/roms/kelboy</path>\n    <extension>.sh</extension>\n    <command>/home/pi/RetroPie/roms/kelboy/kelboy.sh</command>\n    <platform>kelboy</platform>\n    <theme>kelboy</theme>\n  </system>\n</systemList>|' /etc/emulationstation/es_systems.cfg
 
 echo "RestoreSystems fix applied!!!"
 sleep 3
