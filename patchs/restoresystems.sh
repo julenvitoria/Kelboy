@@ -17,7 +17,7 @@ else
 fi
 
 #mod es_systems.cfg file
-sed -i 's|</systemList>|<system>\n    <name>nes</name>\n    <fullname>Nintendo Entertainment System</fullname>\n    <path>/home/pi/RetroPie/roms/nes</path>\n    <extension>.nes .zip .NES .ZIP</extension>\n    <command>/opt/retropie/supplementary/runcommand/runcommand.sh 0 _SYS_ nes %ROM%</command>\n    <platform>nes</platform>\n    <theme>nes</theme>\n</systemList>|' /etc/emulationstation/es_systems.cfg
+sed -i 's|</systemList>|<system>\n    <name>kelboy</name>\n    <fullname>kelboy</fullname>\n    <path>/home/pi/RetroPie/roms/kelboy</path>\n    <extension>.sh</extension>\n    <command>/home/pi/RetroPie/roms/kelboy/kelboy.sh</command>\n    <platform>kelboy</platform>\n    <theme>kelboy</theme>\n</systemList>|' /etc/emulationstation/es_systems.cfg
 
 echo "RestoreSystems fix applied!!!"
 sleep 3
