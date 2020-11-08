@@ -7,5 +7,7 @@ sed -i 's/.*<string name="OMXAudioDev" value=.*/<string name="OMXAudioDev" value
 #Fix asplashcreen.sh
 sudo sed -i 's/.*omxplayer --no-osd -o both -b.*/omxplayer --no-osd -o alsa -b --layer 10000 "\$line"/' /opt/retropie/supplementary/splashscreen/asplashscreen.sh
 
+echo "Audio fix applied!!!"
+sleep 3
 #Restart EmulationStation
 /home/pi/scripts/multi_switch.sh --ES-RESTART
