@@ -8,12 +8,15 @@ sleep 5
 if [ -d /home/pi/RetroPie/roms/kelboy/ ]; then
         echo "Directory /roms/kelboy was created yet. Downloading kelboy system..."
         wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/kelboy/kelboy.sh>/home/pi/RetroPie/roms/kelboy/kelboy.sh
+        chmod +x home/pi/RetroPie/roms/kelboy/kelboy.sh
         sleep 2
 else
         echo "Creating kelboy directory and downloading kelboy system..."
         sleep 2
         mkdir /home/pi/RetroPie/roms/kelboy/
         wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/kelboy/kelboy.sh>/home/pi/RetroPie/roms/kelboy/kelboy.sh
+        chmod +x home/pi/RetroPie/roms/kelboy/kelboy.sh
+        sleep 2
 fi
 
 #mod es_systems.cfg file
