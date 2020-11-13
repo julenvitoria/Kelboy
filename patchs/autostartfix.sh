@@ -6,7 +6,7 @@ sed -i 's/.*rp_module_desc="Auto-start Emulation Station \/ Kodi on boot".*/rp_m
 #mod kodi option and kelboy option add
 sed -i 's|echo -e "kodi-standalone #auto\\nemulationstation #auto" >>"$script"|echo -e "cd /home/pi/kelboy-launcher \&\& python3 joystick.py \& #auto\\nkodi-standalone #auto\\nemulationstation #auto" >>"$script"\n            ;;\n        kelboy)\n            echo -e "cd /home/pi/kelboy-launcher \&\& ./launcher.sh #auto" >>"$script"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #mod es option
-sed -i 's|echo "emulationstation #auto" >>"$script"|echo -e "emulationstation #auto" >>"$script"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+sed -i 's|echo "emulationstation #auto" >>"$script"|echo -e "cd /home/pi/kelboy-launcher \&\& python3 joystick.py \& #auto\\nemulationstation #auto" >>"$script"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #mod menu adding kelboy
 sed -i 's|2 "Start Kodi at boot (exit for Emulation Station)"|2 "Start Kodi at boot (exit for Emulation Station)"\n                3 "Start Kelboy Launcher at boot (Launch ES through PROGRAMS)"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #add kelboy selection dialogue
