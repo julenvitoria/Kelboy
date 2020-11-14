@@ -152,5 +152,20 @@ sed -i '/.\/launcher.sh/ d' /home/pi/.bashrc
 sed -i 's|cd kelboy-launcher|#cd kelboy-launcher \&\& ./launcher.sh|' /home/pi/.bashrc
 sed -i 's|# RETROPIE PROFILE START|cd ~\n# RETROPIE PROFILE START|' /home/pi/.bashrc
 
+#mod autostart.sh
+rm /opt/retropie/configs/all/autostart.sh
+echo -e "cd /home/pi/kelboy-launcher \&\& ./launcher.sh #auto" >> /opt/retropie/configs/all/autostart.sh
+
 #Restart EmulationStation
-/home/pi/scripts/multi_switch.sh --ES-RESTART
+#/home/pi/scripts/multi_switch.sh --ES-RESTART
+
+#Restart system
+echo "Rebooting..."
+sleep 2
+echo "Rebooting..."
+sleep 2
+echo "Rebooting..."
+sleep 2
+echo "Rebooting..."
+sleep 2
+sudo reboot

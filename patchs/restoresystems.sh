@@ -20,7 +20,6 @@ else
 fi
 
 #mod es_systems.cfg file
-
 if grep -q "<name>kelboy</name>" /etc/emulationstation/es_systems.cfg ; then
         echo "kelboy system already exists, nothing to mod..."
 else
