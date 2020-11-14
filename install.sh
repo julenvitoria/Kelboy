@@ -154,7 +154,7 @@ sed -i 's|# RETROPIE PROFILE START|cd ~\n# RETROPIE PROFILE START|' /home/pi/.ba
 
 #mod autostart.sh
 rm /opt/retropie/configs/all/autostart.sh
-echo -e "cd /home/pi/kelboy-launcher \&\& ./launcher.sh #auto" >> /opt/retropie/configs/all/autostart.sh
+echo -e "cd /home/pi/kelboy-launcher && ./launcher.sh #auto" >> /opt/retropie/configs/all/autostart.sh
 
 #Restart EmulationStation
 /home/pi/scripts/multi_switch.sh --ES-RESTART
