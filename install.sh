@@ -157,15 +157,4 @@ rm /opt/retropie/configs/all/autostart.sh
 echo -e "cd /home/pi/kelboy-launcher \&\& ./launcher.sh #auto" >> /opt/retropie/configs/all/autostart.sh
 
 #Restart EmulationStation
-#/home/pi/scripts/multi_switch.sh --ES-RESTART
-
-#Restart system
-echo "Rebooting..."
-sleep 2
-echo "Rebooting..."
-sleep 2
-echo "Rebooting..."
-sleep 2
-echo "Rebooting..."
-sleep 2
-sudo reboot
+/home/pi/scripts/multi_switch.sh --ES-RESTART
