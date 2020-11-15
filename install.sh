@@ -209,3 +209,19 @@ sudo raspi-config nonint do_wifi_country "ES"
 
 #Restart EmulationStation
 /home/pi/scripts/multi_switch.sh --ES-RESTART
+
+#updating kelboy launcher
+cd /home/pi/kelboy-launcher
+killall python3
+python3 joystick.py &
+bin/updater.sh
+sleep 3
+killall python3
+python3 joystick.py &
+bin/updater.sh
+sleep 3
+killall python3
+python3 joystick.py &
+bin/updater.sh
+sleep 3
+sudo reboot
