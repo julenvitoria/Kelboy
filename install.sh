@@ -11,7 +11,7 @@ if [ -d /home/pi/scripts/ ]; then
         echo "Directory scripts was created yet"
         sleep 2
 else
-        echo "Creatings scripts directory"
+        echo "Creating scripts directory"
         sleep 2
         mkdir /home/pi/scripts/
 fi
@@ -31,7 +31,7 @@ if [ -d /home/pi/RetroPie/retropiemenu/Update-Addons ]; then
         rm -R /home/pi/RetroPie/retropiemenu/Update-Addons
         mkdir /home/pi/RetroPie/retropiemenu/Update-Addons
 else
-        echo "Creatings directory update addons."
+        echo "Creating directory update addons."
         sleep 2
         mkdir /home/pi/RetroPie/retropiemenu/Update-Addons
 fi
@@ -165,9 +165,22 @@ sed -i 's|2 "Start Kodi at boot (exit for Emulation Station)"|2 "Start Kodi at b
 sed -i 's|printMsgs "dialog" "Kodi is set to launch at boot."|printMsgs "dialog" "Kodi is set to launch at boot."\n                    ;;\n                3)\n                    enable_autostart kelboy\n                    printMsgs "dialog" "Kelboy Launcher is set to launch at boot."|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 
 #mod /opt/retropie/configs/all/autostart.sh
+cd~
 rm /opt/retropie/configs/all/autostart.sh
 sleep 2
-echo -e "cd /home/pi/kelboy-launcher && ./launcher.sh #auto" >> /opt/retropie/configs/all/autostart.sh
+echo -e "cd /home/pi/kelboy-launcher && ./launcher.sh #auto" > /opt/retropie/configs/all/autostart.sh
+
+#create script /etc/profile.d/10-retropie.sh
+if [ ! -f /etc/profile.d/10-retropie.sh ]; then
+    cat > 10-retropie.sh <<_EOF_
+# launch our autostart apps (if we are on the correct tty and not in X)
+if [ "\`tty\`" = "/dev/tty1" ] && [ -z "\$DISPLAY" ] && [ "\$USER" = "$user" ]; then
+    bash "/opt/retropie/configs/all/autostart.sh"
+fi
+_EOF_
+    sudo chown root:root 10-retropie.sh
+    sudo mv 10-retropie.sh /etc/profile.d/
+fi
 
 #Create /home/pi/scripts/kelboy directory and download files
 if [ -d /home/pi/scripts/kelboy/ ]; then
