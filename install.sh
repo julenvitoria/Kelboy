@@ -166,6 +166,7 @@ sed -i 's|printMsgs "dialog" "Kodi is set to launch at boot."|printMsgs "dialog"
 
 #mod /opt/retropie/configs/all/autostart.sh
 rm /opt/retropie/configs/all/autostart.sh
+sleep 2
 echo -e "cd /home/pi/kelboy-launcher && ./launcher.sh #auto" >> /opt/retropie/configs/all/autostart.sh
 
 #Create /home/pi/scripts/kelboy directory and download files
@@ -189,6 +190,9 @@ if grep -q "<name>kelboy</name>" /etc/emulationstation/es_systems.cfg ; then
 else
         sudo sed -i 's|</systemList>|  <system>\n    <name>kelboy</name>\n    <fullname>kelboy</fullname>\n    <path>/home/pi/scripts/kelboy</path>\n    <extension>.sh</extension>\n    <command>/home/pi/scripts/kelboy/kelboy.sh</command>\n    <platform>kelboy</platform>\n    <theme>kelboy</theme>\n  </system>\n</systemList>|' /etc/emulationstation/es_systems.cfg
 fi
+
+#select ES as wifi country
+sudo raspi-config nonint do_wifi_country "ES"
 
 #Restart EmulationStation
 /home/pi/scripts/multi_switch.sh --ES-RESTART
