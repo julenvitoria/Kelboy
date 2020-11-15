@@ -4,7 +4,7 @@ echo "Esto esta en pruebas!!!"
 echo "Aun asi se puede usar... ;)"
 sleep 5
 
-#Create /roms/kelboy directory and download files
+#Create /home/pi/scripts/kelboy directory and download files
 if [ -d /home/pi/scripts/kelboy/ ]; then
         echo "Directory /home/pi/scripts/kelboy/ was created yet. Downloading kelboy system..."
         wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/kelboy/kelboy.sh>/home/pi/scripts/kelboy/kelboy.sh
