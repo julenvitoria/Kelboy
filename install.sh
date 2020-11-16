@@ -166,6 +166,7 @@ sed -i 's|printMsgs "dialog" "Kodi is set to launch at boot."|printMsgs "dialog"
 
 #enable autostart boot and mod /opt/retropie/configs/all/autostart.sh
 cd ~/RetroPie-Setup/
+sudo ./retropie_packages.sh runcommand install
 sudo ./retropie_packages.sh autostart enable
 cd ~
 rm /opt/retropie/configs/all/autostart.sh
