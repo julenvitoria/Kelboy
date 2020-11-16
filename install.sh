@@ -105,7 +105,7 @@ if [ -d /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes ]; then
         rm -R /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
         mkdir /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
 else
-        echo "Creating directory fixes and Doenloading them..."
+        echo "Creating directory fixes and Downloading them..."
         sleep 2
         mkdir /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
 fi
