@@ -8,9 +8,13 @@ sed -i 's|echo -e "kodi-standalone #auto\\nemulationstation #auto" >>"$script"|e
 #mod es option
 sed -i 's|echo "emulationstation #auto" >>"$script"|echo -e "cd /home/pi/kelboy-launcher \&\& python3 joystick.py \& #auto\\nemulationstation #auto" >>"$script"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #mod menu adding kelboy
-sed -i 's|2 "Start Kodi at boot (exit for Emulation Station)"|2 "Start Kodi at boot (exit for Emulation Station)"\n                3 "Start Kelboy Launcher at boot (Launch ES through PROGRAMS)"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+if ! grep -q "Start Kelboy Launcher at boot" /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh; then
+	sed -i 's|2 "Start Kodi at boot (exit for Emulation Station)"|2 "Start Kodi at boot (exit for Emulation Station)"\n                3 "Start Kelboy Launcher at boot (Launch ES through PROGRAMS)"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+fi
 #add kelboy selection dialogue
-sed -i 's|printMsgs "dialog" "Kodi is set to launch at boot."|printMsgs "dialog" "Kodi is set to launch at boot."\n                    ;;\n                3)\n                    enable_autostart kelboy\n                    printMsgs "dialog" "Kelboy Launcher is set to launch at boot."|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+if ! grep -q "printMsgs \"dialog\" \"Kelboy Launcher is set to launch at boot.\"" /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh; then
+	sed -i 's|printMsgs "dialog" "Kodi is set to launch at boot."|printMsgs "dialog" "Kodi is set to launch at boot."\n                    ;;\n                3)\n                    enable_autostart kelboy\n                    printMsgs "dialog" "Kelboy Launcher is set to launch at boot."|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+fi
 
 echo "Autostart fix applied!!!"
 sleep 3
