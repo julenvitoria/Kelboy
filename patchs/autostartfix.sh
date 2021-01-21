@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#script to modify the retropie autostart.sh script to have the option to select kelboy launcher at boot and have joystick.py also work with the ES and Kodi options
+#script to modify retropie autostart.sh script to have the option to select kelboy launcher at boot and have joystick.py also work with the ES and Kodi options
 #mod module description
 sed -i 's/.*rp_module_desc="Auto-start Emulation Station \/ Kodi on boot".*/rp_module_desc="Auto-start ES \/ Kodi \/ Kelboy Launcher on boot"/' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #mod kodi option and kelboy option add

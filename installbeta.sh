@@ -139,7 +139,7 @@ else
 fi
 
 #Install autostart.sh fix
-wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/autostartfixbeta.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/autostartfix.sh
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/autostartfix.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/autostartfix.sh
 chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/autostartfix.sh
 if grep -q "autostartfix.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
         echo "Autostart fix is in the gamelist.xml yet"
