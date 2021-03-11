@@ -148,33 +148,36 @@ else
 fi
 
 #.bashrc mod
-sed -i '/.\/launcher.sh/ d' /home/pi/.bashrc
-sed -i 's|cd kelboy-launcher|#cd kelboy-launcher \&\& ./launcher.sh|' /home/pi/.bashrc
-sed -i 's|# RETROPIE PROFILE START|cd ~\n# RETROPIE PROFILE START|' /home/pi/.bashrc
+#sed -i '/.\/launcher.sh/ d' /home/pi/.bashrc
+#sed -i 's|cd kelboy-launcher|#cd kelboy-launcher \&\& ./launcher.sh|' /home/pi/.bashrc
+#sed -i 's|# RETROPIE PROFILE START|cd ~\n# RETROPIE PROFILE START|' /home/pi/.bashrc
+sed -i '119,124d' .bashrc
 
 #mod /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #mod module description
-sed -i 's/.*rp_module_desc="Auto-start Emulation Station \/ Kodi on boot".*/rp_module_desc="Auto-start ES \/ Kodi \/ Kelboy Launcher on boot"/' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+#sed -i 's/.*rp_module_desc="Auto-start Emulation Station \/ Kodi on boot".*/rp_module_desc="Auto-start ES \/ Kodi \/ Kelboy Launcher on boot"/' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #mod kodi option and kelboy option add
-sed -i 's|echo -e "kodi-standalone #auto\\nemulationstation #auto" >>"$script"|echo -e "cd /home/pi/kelboy-launcher \&\& python3 joystick.py \& #auto\\nkodi-standalone #auto\\nemulationstation #auto" >>"$script"\n            ;;\n        kelboy)\n            echo -e "cd /home/pi/kelboy-launcher \&\& ./launcher.sh #auto" >>"$script"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+#sed -i 's|echo -e "kodi-standalone #auto\\nemulationstation #auto" >>"$script"|echo -e "cd /home/pi/kelboy-launcher \&\& python3 joystick.py \& #auto\\nkodi-standalone #auto\\nemulationstation #auto" >>"$script"\n            ;;\n        kelboy)\n            echo -e "cd /home/pi/kelboy-launcher \&\& ./launcher.sh #auto" >>"$script"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #mod es option
-sed -i 's|echo "emulationstation #auto" >>"$script"|echo -e "cd /home/pi/kelboy-launcher \&\& python3 joystick.py \& #auto\\nemulationstation #auto" >>"$script"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+#sed -i 's|echo "emulationstation #auto" >>"$script"|echo -e "cd /home/pi/kelboy-launcher \&\& python3 joystick.py \& #auto\\nemulationstation #auto" >>"$script"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #mod menu adding kelboy
-sed -i 's|2 "Start Kodi at boot (exit for Emulation Station)"|2 "Start Kodi at boot (exit for Emulation Station)"\n                3 "Start Kelboy Launcher at boot (Launch ES through PROGRAMS)"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+#sed -i 's|2 "Start Kodi at boot (exit for Emulation Station)"|2 "Start Kodi at boot (exit for Emulation Station)"\n                3 "Start Kelboy Launcher at boot (Launch ES through PROGRAMS)"|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 #add kelboy selection dialogue
-sed -i 's|printMsgs "dialog" "Kodi is set to launch at boot."|printMsgs "dialog" "Kodi is set to launch at boot."\n                    ;;\n                3)\n                    enable_autostart kelboy\n                    printMsgs "dialog" "Kelboy Launcher is set to launch at boot."|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
+#sed -i 's|printMsgs "dialog" "Kodi is set to launch at boot."|printMsgs "dialog" "Kodi is set to launch at boot."\n                    ;;\n                3)\n                    enable_autostart kelboy\n                    printMsgs "dialog" "Kelboy Launcher is set to launch at boot."|' /home/pi/RetroPie-Setup/scriptmodules/supplementary/autostart.sh
 
 #enable autostart boot and mod /opt/retropie/configs/all/autostart.sh
 cd ~/RetroPie-Setup/
 sudo ./retropie_packages.sh runcommand install
 sudo ./retropie_packages.sh autostart enable
 cd ~
-rm /opt/retropie/configs/all/autostart.sh
+if [ -f /opt/retropie/configs/all/autostart.sh ]; then
+    rm /opt/retropie/configs/all/autostart.sh
+fi
 sleep 2
 touch /opt/retropie/configs/all/autostart.sh
 sed -i '/#auto/d' "/opt/retropie/configs/all/autostart.sh"
 sed -i '$a\' "/opt/retropie/configs/all/autostart.sh"
-echo -e "cd /home/pi/kelboy-launcher && ./launcher.sh #auto" > /opt/retropie/configs/all/autostart.sh
+echo -e "if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then\n    echo \"welcome to kelboy throw ssh session\"\nelse\n    cd kelboy-launcher\n    ./launcher.sh\nfi #auto" > /opt/retropie/configs/all/autostart.sh
 
 #Create /home/pi/scripts/kelboy directory and download files
 if [ -d /home/pi/scripts/kelboy/ ]; then
@@ -200,6 +203,17 @@ fi
 
 #select ES as wifi country
 sudo raspi-config nonint do_wifi_country "ES"
+
+#configure keyboard map to ES
+sudo raspi-config nonint do_configure_keyboard es
+
+#select timezone to Europe/Madrid
+sudo raspi-config nonint do_change_timezone Europe/Madrid
+
+#generate en_GB & es_ES locales
+sudo raspi-config nonint do_change_locale es_ES.UTF-8
+sudo sed -i -e 's/# en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen
+sudo locale-gen
 
 #Restart EmulationStation
 /home/pi/scripts/multi_switch.sh --ES-RESTART
