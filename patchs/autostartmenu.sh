@@ -23,7 +23,7 @@ case $menuitem in
     touch /opt/retropie/configs/all/autostart.sh
     sed -i '/#auto/d' "/opt/retropie/configs/all/autostart.sh"
     sed -i '$a\\' "/opt/retropie/configs/all/autostart.sh"
-    echo -e "if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then #auto\n    echo \"welcome to kelboy throw ssh session\" #auto\nelse #auto\n    cd kelboy-launcher #auto\n    ./launcher.sh #auto\nfi #auto" > /opt/retropie/configs/all/autostart.sh
+    echo -e "if [ -n \"\$SSH_CLIENT\" ] || [ -n \"\$SSH_TTY\" ]; then #auto\n    echo \"welcome to kelboy throw ssh session\" #auto\nelse #auto\n    cd kelboy-launcher #auto\n    ./launcher.sh #auto\nfi #auto" > /opt/retropie/configs/all/autostart.sh
     clear;;
   2)clear
     echo "Configuring boot sequence..."
