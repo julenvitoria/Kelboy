@@ -162,7 +162,7 @@ sleep 2
 touch /opt/retropie/configs/all/autostart.sh
 sed -i '/#auto/d' "/opt/retropie/configs/all/autostart.sh"
 sed -i '$a\' "/opt/retropie/configs/all/autostart.sh"
-echo -e "if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then\n    echo \"welcome to kelboy throw ssh session\"\nelse\n    cd kelboy-launcher\n    ./launcher.sh\nfi #auto" > /opt/retropie/configs/all/autostart.sh
+echo -e "if [ -n \"\$SSH_CLIENT\" ] || [ -n \"\$SSH_TTY\" ]; then #auto\n    echo \"welcome to kelboy throw ssh session\" #auto\nelse #auto\n    cd kelboy-launcher #auto\n    ./launcher.sh #auto\nfi #auto" > /opt/retropie/configs/all/autostart.sh
 
 #Create /home/pi/scripts/kelboy directory and download files
 if [ -d /home/pi/scripts/kelboy/ ]; then
