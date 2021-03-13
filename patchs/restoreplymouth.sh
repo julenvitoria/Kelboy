@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Restoring plymouth splashscree at boot..."
+echo "Restoring plymouth splashscreen at boot..."
 sleep 1
 cd ~/RetroPie-Setup/
 sudo ./retropie_packages.sh splashscreen disable
