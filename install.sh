@@ -107,6 +107,15 @@ else
         sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/autostartmenu.sh</path>\n\t\t<name>Boot selection menu</name>\n\t\t<desc>ENG: Script to select through a menu to boot into Kelboy launcher, EmulationStation or Kodi. It could be neccessary to reselect after an update.\nESP: Script para seleccionat a traves de un menu si se desea iniciat en el launcher de la Kelboy, en EmulationStation o en Kodi. Podria ser necesario volver a seleccionarlo si se realiza alguna actualizacion.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
+#Install joymenu.sh 
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/joymenu.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/joymenu.sh
+chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/joymenu.sh
+if grep -q "joymenu.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+        echo "Joy menu is in the gamelist.xml yet"
+else
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/joymenu.sh</path>\n\t\t<name>Analog Joy menu</name>\n\t\t<desc>ENG: Script to select through a menu enable/disable the analog joystick and invert X or Y axis. NOTE: The last two options only take effect if the Arduino Leonardo of your Kelboy has the last firmware that includes this capability.\nESP: Script para seleccionar a través de un menú habilitar/deshabilitar el joystick analógico e invertir los ejes X e Y. NOTA: Las dos últimas opciones solo tienen efecto si el Arduino Leonardo de tu Kelboy tiene el último firmware que incluye esta capacidad.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+fi
+
 #Create Fixes directory
 if [ -d /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes ]; then
         echo "Directory fixes was created yet... Downloading fixes"
@@ -145,6 +154,15 @@ if grep -q "audiofix.sh" /opt/retropie/configs/all/emulationstation/gamelists/re
         echo "Audio fix is in the gamelist.xml yet"
 else
         sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/audiofix.sh</path>\n\t\t<name>Fix Sound Settings</name>\n\t\t<desc>ENG: Script to fix sound settings after an update of retropie.\nESP: Script para arreglar los ajustes de sonido despues de una actualizacion de retropie.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+fi
+
+#Install restore plymouth splashscreen fix
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/restoreplymouth.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/restoreplymouth.sh
+chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/restoreplymouth.sh
+if grep -q "restoreplymouth.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+        echo "Restore Pkymouth splascreen fix is in the gamelist.xml yet"
+else
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/restoreplymouth.sh</path>\n\t\t<name>Restore Plymouth splash</name>\n\t\t<desc>ENG: Script to restore Plymouth splashscreen after an update of retropie.\nESP: Script para restaurar el slplash Plymouth despues de una actualizacion de retropie.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
 #.bashrc mod

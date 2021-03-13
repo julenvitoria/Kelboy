@@ -76,6 +76,24 @@ else
         sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/ConfigRemaps.sh</path>\n\t\t<name>Emulator Configs + Games Remaps</name>\n\t\t<desc>ENG: Script to install emulators configs and remaps for various games of various systems.\nESP: Script para instalar configuraciones de emuladores y mapeos de diversos juegos y sistemas.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
+#Install autostartmenu.sh 
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/autostartmenu.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/autostartmenu.sh
+chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/autostartmenu.sh
+if grep -q "autostartmenu.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+        echo "Autostart menu is in the gamelist.xml yet"
+else
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/autostartmenu.sh</path>\n\t\t<name>Boot selection menu</name>\n\t\t<desc>ENG: Script to select through a menu to boot into Kelboy launcher, EmulationStation or Kodi. It could be neccessary to reselect after an update.\nESP: Script para seleccionat a traves de un menu si se desea iniciat en el launcher de la Kelboy, en EmulationStation o en Kodi. Podria ser necesario volver a seleccionarlo si se realiza alguna actualizacion.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+fi
+
+#Install joymenu.sh 
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/joymenu.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/joymenu.sh
+chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/joymenu.sh
+if grep -q "joymenu.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+        echo "Joy menu is in the gamelist.xml yet"
+else
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/joymenu.sh</path>\n\t\t<name>Analog Joy menu</name>\n\t\t<desc>ENG: Script to select through a menu enable/disable the analog joystick and invert X or Y axis. NOTE: The last two options only take effect if the Arduino Leonardo of your Kelboy has the last firmware that includes this capability.\nESP: Script para seleccionar a través de un menú habilitar/deshabilitar el joystick analógico e invertir los ejes X e Y. NOTA: Las dos últimas opciones solo tienen efecto si el Arduino Leonardo de tu Kelboy tiene el último firmware que incluye esta capacidad.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+fi
+
 #Create Fixes directory
 if [ -d /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes ]; then
         echo "Directory fixes was created yet... Downloading fixes"
@@ -83,7 +101,7 @@ if [ -d /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes ]; then
         rm -R /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
         mkdir /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
 else
-        echo "Creating directory fixes and Doenloading them..."
+        echo "Creating directory fixes and Downloading them..."
         sleep 2
         mkdir /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes
 fi
@@ -116,13 +134,13 @@ else
         sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/audiofix.sh</path>\n\t\t<name>Fix Sound Settings</name>\n\t\t<desc>ENG: Script to fix sound settings after an update of retropie.\nESP: Script para arreglar los ajustes de sonido despues de una actualizacion de retropie.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
-#Install autostart.sh fix
-wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/autostartfix.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/autostartfix.sh
-chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/autostartfix.sh
-if grep -q "autostartfix.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
-        echo "Autostart fix is in the gamelist.xml yet"
+#Install restore plymouth splashscreen fix
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/restoreplymouth.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/restoreplymouth.sh
+chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/restoreplymouth.sh
+if grep -q "restoreplymouth.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+        echo "Restore Pkymouth splascreen fix is in the gamelist.xml yet"
 else
-        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/autostartfix.sh</path>\n\t\t<name>Fix autostart.sh</name>\n\t\t<desc>ENG: Script to modify the retropie autostart.sh script to have the option to select kelboy launcher at boot and have joystick.py also work with the ES and Kodi options. It could be neccessary to apply this fix after an update.\nESP: Script para modificar el script retropie autostart.sh para tener la opción de seleccionar el launcher de la kelboy para que inicie en el arranque y tambien hacer que joystick.py también funcione con las opciones ES y Kodi (con esto conseguimos por ejemplo tener icono de bateria arrancando en ES sin launcher). Podría ser necesario aplicar esta corrección después de una actualización.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/restoreplymouth.sh</path>\n\t\t<name>Restore Plymouth splash</name>\n\t\t<desc>ENG: Script to restore Plymouth splashscreen after an update of retropie.\nESP: Script para restaurar el slplash Plymouth despues de una actualizacion de retropie.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
 #Restart EmulationStation
