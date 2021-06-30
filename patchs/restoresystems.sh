@@ -20,10 +20,19 @@ else
 fi
 
 #mod es_systems.cfg file
+
+#kelboy
 if grep -q "<name>kelboy</name>" /etc/emulationstation/es_systems.cfg ; then
         echo "kelboy system already exists, nothing to mod..."
 else
-        sudo sed -i 's|</systemList>|  <system>\n    <name>kelboy</name>\n    <fullname>kelboy</fullname>\n    <path>/home/pi/scripts/kelboy</path>\n    <extension>.sh</extension>\n    <command>/home/pi/scripts/kelboy/kelboy.sh</command>\n    <platform>kelboy</platform>\n    <theme>kelboy</theme>\n  </system>\n</systemList>|' /etc/emulationstation/es_systems.cfg
+        sudo sed -i 's|</systemList>|  <system>\n    <name>kelboy</name>\n    <fullname>kelboy</fullname>\n    <path>/home/pi/scripts/kelboy</path>\n <extension>.sh</extension>\n    <command>/home/pi/scripts/kelboy/kelboy.sh</command>\n    <platform>kelboy</platform>\n    <theme>kelboy</theme>\n  </system>\n</systemList>|' /etc/emulationstation/es_systems.cfg
+fi
+
+#openbor
+if grep -q "<name>openbor</name>" /etc/emulationstation/es_systems.cfg ; then
+        echo "OpenBOR system already exists, nothing to mod..."
+else
+        sudo sed -i 's|</systemList>|  <system>\n    <name>openbor</name>\n    <fullname>OpenBOR</fullname>\n    <path>/home/pi/RetroPie/roms/ports/openbor</path>\n <extension>.bor .BOR .Bor .PAK .pak .Pak .PAk .paK .pAk</extension>\n    <command>/opt/retropie/supplementary/runcommand/runcommand.sh 0 _PORT_ openbor %ROM%</command>\n    <platform>openbor</platform>\n    <theme>openbor</theme>\n  </system>\n</systemList>|' /etc/emulationstation/es_systems.cfg
 fi
 
 echo "RestoreSystems fix applied!!!"
