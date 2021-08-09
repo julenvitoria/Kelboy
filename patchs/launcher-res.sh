@@ -16,7 +16,7 @@ case $menuitem in
     if grep -E '        "value": 320,|        "value": 240,' /home/pi/.kelboy-launcher/settings.json ; then
         echo "Resolucion ya seleccionada,"
         echo "no se realiza ningun cambio."
-        sleep 5
+        sleep 3
     else
         sed -i 's/        "value": 640,/        "value": 320,/' /home/pi/.kelboy-launcher/settings.json
         sed -i 's/        "value": 480,/        "value": 240,/' /home/pi/.kelboy-launcher/settings.json
@@ -30,6 +30,7 @@ case $menuitem in
     if grep -E '        "value": 640,|        "value": 480,' /home/pi/.kelboy-launcher/settings.json ; then
         echo "Resolucion ya seleccionada,"
         echo "no se realiza ningun cambio."
+        sleep 3
     else
         sed -i 's/        "value": 320,/        "value": 640,/' /home/pi/.kelboy-launcher/settings.json
         sed -i 's/        "value": 240,/        "value": 480,/' /home/pi/.kelboy-launcher/settings.json
