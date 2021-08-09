@@ -143,5 +143,14 @@ else
         sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/restoreplymouth.sh</path>\n\t\t<name>Restore Plymouth splash</name>\n\t\t<desc>ENG: Script to restore Plymouth splashscreen after an update of retropie.\nESP: Script para restaurar el slplash Plymouth despues de una actualizacion de retropie.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
+#Install launcher resolution menu fix
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/launcher-res.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/launcher-res.sh
+chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/launcher-res.sh
+if grep -q "launcher-res.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+        echo "Launcher resolution menu fix is in the gamelist.xml yet"
+else
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/launcher-res.sh</path>\n\t\t<name>Launcher resolution menu</name>\n\t\t<desc>ENG: Menu to change the resolution of the kelboy launcher.\nESP: Menu para cambiar la resolucion del launcher de la kelboy.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+fi
+
 #Restart EmulationStation
 /home/pi/scripts/multi_switch.sh --ES-RESTART
