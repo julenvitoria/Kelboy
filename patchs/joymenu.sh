@@ -37,7 +37,7 @@ case $menuitem in
         echo "Nada que hacer..."
         sleep 3
     else
-        i2cget -y 1 0x0a 0x24
+        i2cset -y 1 0x0a 0x24
         echo "X axis was inverted!!!"
         echo "Don't forget to recalibrate"
         echo "and configure input on ES ;)"
@@ -56,7 +56,7 @@ case $menuitem in
         echo "Nada que hacer..."
         sleep 3
     else
-        i2cget -y 1 0x0a 0x25
+        i2cset -y 1 0x0a 0x25
         echo "Y axis was inverted!!!"
         echo "Don't forget to recalibrate"
         echo "and configure input on ES ;)"
