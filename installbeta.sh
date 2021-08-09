@@ -147,6 +147,15 @@ else
         sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/autostartfix.sh</path>\n\t\t<name>Fix autostart.sh</name>\n\t\t<desc>ENG: Script to modify the retropie autostart.sh script to have the option to select kelboy launcher at boot and have joystick.py also work with the ES and Kodi options. It could be neccessary to apply this fix after an update.\nESP: Script para modificar el script retropie autostart.sh para tener la opción de seleccionar el launcher de la kelboy para que inicie en el arranque y tambien hacer que joystick.py también funcione con las opciones ES y Kodi (con esto conseguimos por ejemplo tener icono de bateria arrancando en ES sin launcher). Podría ser necesario aplicar esta corrección después de una actualización.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
+#Install launcher resolution menu fix
+wget -O- https://raw.githubusercontent.com/julenvitoria/Kelboy/main/patchs/launcher-res.sh>/home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/launcher-res.sh
+chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/Fixes/launcher-res.sh
+if grep -q "launcher-res.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
+        echo "Launcher resolution menu fix is in the gamelist.xml yet"
+else
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/Fixes/launcher-res.sh</path>\n\t\t<name>Launcher resolution menu</name>\n\t\t<desc>ENG: Menu to change the resolution of the kelboy launcher.\nESP: Menu para cambiar la resolucion del launcher de la kelboy.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+fi
+
 #.bashrc mod
 sed -i '/.\/launcher.sh/ d' /home/pi/.bashrc
 sed -i 's|cd kelboy-launcher|#cd kelboy-launcher \&\& ./launcher.sh|' /home/pi/.bashrc
