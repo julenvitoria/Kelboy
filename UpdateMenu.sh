@@ -82,7 +82,7 @@ chmod +x /home/pi/RetroPie/retropiemenu/Update-Addons/autostartmenu.sh
 if grep -q "autostartmenu.sh" /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml ; then
         echo "Autostart menu is in the gamelist.xml yet"
 else
-        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/autostartmenu.sh</path>\n\t\t<name>Boot selection menu</name>\n\t\t<desc>ENG: Script to select through a menu to boot into Kelboy launcher, EmulationStation or Kodi. It could be neccessary to reselect after an update.\nESP: Script para seleccionat a traves de un menu si se desea iniciat en el launcher de la Kelboy, en EmulationStation o en Kodi. Podria ser necesario volver a seleccionarlo si se realiza alguna actualizacion.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
+        sudo sed -i 's|</gameList>|\t<game>\n\t\t<path>./Update-Addons/autostartmenu.sh</path>\n\t\t<name>Boot selection menu</name>\n\t\t<desc>ENG: Script to select through a menu to boot into Kelboy launcher, EmulationStation or Kodi. It could be neccessary to reselect after an update.\nESP: Script para seleccionar a traves de un menu si se desea iniciat en el launcher de la Kelboy, en EmulationStation o en Kodi. Podria ser necesario volver a seleccionarlo si se realiza alguna actualizacion.</desc>\n\t\t<image></image>\n\t\t<playcount>0</playcount>\n\t\t<lastplayed>20180514T205700</lastplayed>\n\t</game>\n</gameList>|' /opt/retropie/configs/all/emulationstation/gamelists/retropie/gamelist.xml
 fi
 
 #Install joymenu.sh 
